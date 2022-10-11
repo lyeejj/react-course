@@ -12,7 +12,18 @@ const AddUser = (props) => {
   const addUserHandler = (event) => {
     //submit 기본적인 이벤트 reloading 막기위함
     event.preventDefault();
+    // 유효성 검증
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      return;
+    }
+    if (+enteredAge < 1) {
+      return;
+    }
+
     console.log(enteredUsername, enteredAge);
+    // 제출후 초기화 -> input태그에 value속성을 이용
+    setEnteredUsername("");
+    setEnteredAge("");
   };
 
   const nameChangeHandler = (event) => {
@@ -26,9 +37,19 @@ const AddUser = (props) => {
     <Card className={classes.input}>
       <form onSubmit={addUserHandler}>
         <label htmlFor="username">Username</label>
-        <input id="username" type="text" onChange={nameChangeHandler} />
+        <input
+          id="username"
+          type="text"
+          value={enteredUsername}
+          onChange={nameChangeHandler}
+        />
         <label htmlFor="age">Age (Years)</label>
-        <input id="age" type="number" onChange={ageChangeHandler} />
+        <input
+          id="age"
+          type="number"
+          value={enteredAge}
+          onChange={ageChangeHandler}
+        />
         <Button type="submit">Add User</Button>
       </form>
     </Card>
