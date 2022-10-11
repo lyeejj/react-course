@@ -20,7 +20,8 @@ const AddUser = (props) => {
       return;
     }
 
-    console.log(enteredUsername, enteredAge);
+    // console.log(enteredUsername, enteredAge);
+    props.onAddUser(enteredUsername, enteredAge);
     // 제출후 초기화 -> input태그에 value속성을 이용
     setEnteredUsername("");
     setEnteredAge("");
