@@ -5,7 +5,7 @@ import classes from "./Modal.module.css";
 
 // Portals 이용
 const Backdrop = (props) => {
-  return <div className={classes.backdrop}></div>;
+  return <div className={classes.backdrop} onClick={props.onClose}></div>;
 };
 const ModalOverlay = (props) => {
   return (
@@ -28,7 +28,10 @@ const Modal = (props) => {
   return (
     <Fragment>
       {/* (무엇을 포탈, 어디로 포탈) */}
-      {ReactDOM.createPortal(<Backdrop />, portalElement)}
+      {ReactDOM.createPortal(
+        <Backdrop onClose={props.onClose} />,
+        portalElement
+      )}
       {ReactDOM.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
         portalElement
