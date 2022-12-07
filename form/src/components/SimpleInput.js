@@ -7,6 +7,13 @@ const SimpleInput = (props) => {
   const enteredNameIsValid = enteredName.trim() !== "";
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
+  //전체폼 유효여부판단
+  let formIsValid = false;
+
+  if (enteredNameIsValid) {
+    formIsValid = true;
+  }
+
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
   };
@@ -15,6 +22,7 @@ const SimpleInput = (props) => {
     setEnteredNameTouched(true);
   };
 
+  //제출
   const formSubmissionHandler = (event) => {
     event.preventDefault();
 
@@ -51,7 +59,7 @@ const SimpleInput = (props) => {
         )}
       </div>
       <div className="form-actions">
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
